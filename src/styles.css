@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * FROOZO CAFE — Madhavadhara, Visakhapatnam
+ * Palette drawn from the real interior: deep teal accent wall, honey oak
+ * paneling, sage velvet chairs, black metal frames, brass pendant glow,
+ * terracotta mosaic tile, cream walls. Froozo red survives as the CTA only.
+ */
+
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-char: var(--char);
+  --color-char-soft: var(--char-soft);
+  --color-cream: var(--cream);
+  --color-red: var(--froozo-red);
+  --color-gold: var(--brass);
+  --color-brass: var(--brass);
+  --color-teal: var(--teal);
+  --color-teal-deep: var(--teal-deep);
+  --color-oak: var(--oak);
+  --color-oak-soft: var(--oak-soft);
+  --color-sage: var(--sage);
+  --color-terracotta: var(--terracotta);
+  --color-smoke: var(--smoke);
+  --font-display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Black metal furniture frames — the site's near-black */
+  --char: #171412;
+  --char-soft: #241f1b;
+  --cream: #fbf3e7;
+  /* Deep teal accent wall behind the counter */
+  --teal: #1f4b47;
+  --teal-deep: #143331;
+  /* Warm oak / honey wood flooring + paneling */
+  --oak: #c08a4e;
+  --oak-soft: #e2c49b;
+  /* Sage velvet chairs */
+  --sage: #8fa888;
+  /* Brass pendant glow */
+  --brass: #e8b563;
+  /* Mosaic tile nook — sparing accent */
+  --terracotta: #c1633b;
+  --froozo-red: #d62828;
+  --smoke: #8a8078;
+
+  --background: var(--cream);
+  --foreground: var(--char);
+  --card: #fdf8ef;
+  --card-foreground: var(--char);
+  --popover: #fdf8ef;
+  --popover-foreground: var(--char);
+  --primary: var(--froozo-red);
+  --primary-foreground: var(--cream);
+  --secondary: var(--sage);
+  --secondary-foreground: var(--char);
+  --muted: #efe4d3;
+  --muted-foreground: var(--smoke);
+  --accent: var(--brass);
+  --accent-foreground: var(--char);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--cream);
+  --border: color-mix(in oklab, var(--char) 16%, transparent);
+  --input: color-mix(in oklab, var(--char) 22%, transparent);
+  --ring: var(--teal);
+
+  --shadow-ticket: 6px 6px 0 var(--char);
+  --gradient-ember: linear-gradient(100deg, var(--teal), var(--brass));
+  --gradient-oak: linear-gradient(150deg, var(--oak) 0%, var(--char) 82%);
+  --gradient-teal: linear-gradient(150deg, var(--teal) 0%, var(--char) 82%);
+  --gradient-sage: linear-gradient(150deg, var(--sage) 0%, var(--teal-deep) 85%);
+}
+
+
+.dark {
+  --background: var(--char);
+  --foreground: var(--cream);
+  --card: var(--char-soft);
+  --card-foreground: var(--cream);
+  --popover: var(--char-soft);
+  --popover-foreground: var(--cream);
+  --muted: var(--char-soft);
+  --muted-foreground: var(--smoke);
+  --border: oklch(0.966 0.023 82 / 16%);
+  --input: oklch(0.966 0.023 82 / 20%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  ::selection {
+    background: var(--froozo-red);
+    color: var(--cream);
+  }
+}
+
+@utility ticket-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+}
+
+@utility hard-shadow {
+  box-shadow: var(--shadow-ticket);
+}
+
+@utility dotted-rule {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 6px 6px;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes flow-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility beat-enter {
+  animation: flow-up 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beat-enter {
+    animation: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility marquee {
+  animation: marquee 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
